@@ -29,6 +29,12 @@ class ActorController extends Controller
         return response()->json($actor);
     }
 
+    public function movies(Actor $actor)
+    {
+        $movies = $actor->movies()->with(['genre', 'episodes'])->paginate(20);
+        return response()->json($movies);
+    }
+
     public function update(Request $request, Actor $actor)
     {
         $data = $request->validate([

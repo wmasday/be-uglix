@@ -19,6 +19,9 @@ Route::get('genres', [GenreController::class, 'index']);
 Route::get('genres/{genre}', [GenreController::class, 'show']);
 
 Route::get('movies', [MovieController::class, 'index']);
+Route::get('movies/new-releases', [MovieController::class, 'newReleases']);
+Route::get('movies/top-rated', [MovieController::class, 'topRated']);
+Route::get('movies/search', [MovieController::class, 'search']);
 Route::get('movies/{movie}', [MovieController::class, 'show']);
 
 Route::get('episodes', [EpisodeController::class, 'index']);
@@ -26,6 +29,7 @@ Route::get('episodes/{episode}', [EpisodeController::class, 'show']);
 
 Route::get('actors', [ActorController::class, 'index']);
 Route::get('actors/{actor}', [ActorController::class, 'show']);
+Route::get('actors/{actor}/movies', [ActorController::class, 'movies']);
 
 Route::get('movie-casts', [MovieCastController::class, 'index']);
 Route::get('movie-casts/{movie_id}/{actor_id}', [MovieCastController::class, 'show']);
