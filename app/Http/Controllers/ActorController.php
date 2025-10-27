@@ -53,5 +53,3 @@ class ActorController extends Controller
         return response()->json(['message' => 'Deleted']);
     }
 }
-
-

@@ -64,5 +64,3 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('movie-casts/{movie_id}/{actor_id}', [MovieCastController::class, 'update']);
     Route::delete('movie-casts/{movie_id}/{actor_id}', [MovieCastController::class, 'destroy']);
 });
-
-
