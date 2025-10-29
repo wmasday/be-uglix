@@ -31,12 +31,12 @@ class MoviesTableSeeder extends Seeder
                 'title' => 'Inception',
                 'description' => 'A mind-bending sci-fi thriller about dreams within dreams',
                 'poster_url' => null,
-                'sources_url' => 'https://example.com/videos/inception.mp4',
+                'sources_url' => 'https://example.com/videos/inception_s1e1.mp4',
                 'release_year' => 2010,
                 'country' => 'USA',
-                'type' => 'Movie',
+                'type' => 'Series',
                 'genre_id' => 4, // Sci-Fi
-                'duration_sec' => 8880, // 148 minutes
+                'duration_sec' => null, // Series don't have fixed duration
                 'rating' => 4.70,
                 'created_by' => 1,
                 'created_at' => now(),

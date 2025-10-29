@@ -9,29 +9,29 @@ class EpisodesTableSeeder extends Seeder
 {
     public function run(): void
     {
-        // Assume movie with ID 2 is a Series
+        // Inception Series (movie_id 2) episodes
         DB::table('episodes')->insert([
             [
                 'movie_id' => 2,
                 'season_number' => 1,
                 'episode_number' => 1,
-                'title' => 'Pilot',
-                'description' => 'First episode of the series',
-                'duration_sec' => 3600,
-                'sources_url' => 'https://example.com/videos/series_s1e1.mp4',
+                'title' => 'The Dream Begins',
+                'description' => 'Cobb and his team attempt their first dream heist, but things go wrong when the target\'s subconscious fights back.',
+                'duration_sec' => 3600, // 60 minutes
+                'sources_url' => 'https://example.com/videos/inception_s1e1.mp4',
                 'thumbnail_url' => null,
-                'release_date' => '2023-01-01',
+                'release_date' => '2010-07-16',
             ],
             [
                 'movie_id' => 2,
                 'season_number' => 1,
                 'episode_number' => 2,
-                'title' => 'Next Chapter',
-                'description' => 'Second episode of the series',
-                'duration_sec' => 3550,
-                'sources_url' => 'https://example.com/videos/series_s1e2.mp4',
+                'title' => 'The Architect',
+                'description' => 'Cobb recruits Ariadne as the new architect for the team\'s most dangerous mission yet.',
+                'duration_sec' => 3550, // 59 minutes
+                'sources_url' => 'https://example.com/videos/inception_s1e2.mp4',
                 'thumbnail_url' => null,
-                'release_date' => '2023-01-08',
+                'release_date' => '2010-07-23',
             ],
         ]);
     }
