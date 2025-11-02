@@ -7,11 +7,38 @@ use Illuminate\Http\Request;
 
 class MovieController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $user = $request->user();
+        $perPage = $request->get('per_page', 20);
+        $page = $request->get('page', 1);
+        $query = Movie::with(['genre', 'episodes', 'actors']);
+
+        // Only show published for guests
+        if (!$user) {
+            $query->where('is_published', true);
+        } else {
+            // For admin: Allow status filter
+            $status = $request->get('status');
+            if ($status === 'published') {
+                $query->where('is_published', true);
+            } elseif ($status === 'draft') {
+                $query->where('is_published', false);
+            }
+        }
+
         return response()->json(
-            Movie::with(['genre', 'episodes', 'actors'])->paginate(20)
+            $query->orderBy('created_at', 'desc')->paginate($perPage, ['*'], 'page', $page)
         );
+    }
+
+    // File upload for poster (new method)
+    protected function storePoster($request) {
+        if ($request->hasFile('poster') && $request->file('poster')->isValid()) {
+            $path = $request->file('poster')->store('posters', 'public');
+            return $request->getSchemeAndHttpHost() . '/storage/' . $path;
+        }
+        return null;
     }
 
     public function store(Request $request)
@@ -20,6 +47,7 @@ class MovieController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'poster_url' => 'nullable|url|max:255',
+            'poster' => 'nullable|file|mimes:jpg,jpeg,png,webp|max:5120',
             'sources_url' => 'required|url|max:255',
             'release_year' => 'nullable|integer',
             'type' => 'required|string|in:Movie,Series|max:10',
@@ -28,6 +56,12 @@ class MovieController extends Controller
             'rating' => 'nullable|numeric|min:0|max:5',
             'is_published' => 'boolean',
         ]);
+
+        // Prefer uploaded file over URL
+        $posterFileUrl = $this->storePoster($request);
+        if ($posterFileUrl) {
+            $data['poster_url'] = $posterFileUrl;
+        }
 
         $data['created_by'] = $request->user()->id;
 
@@ -46,6 +80,7 @@ class MovieController extends Controller
             'title' => 'sometimes|required|string|max:255',
             'description' => 'nullable|string',
             'poster_url' => 'nullable|url|max:255',
+            'poster' => 'nullable|file|mimes:jpg,jpeg,png,webp|max:5120',
             'sources_url' => 'sometimes|required|url|max:255',
             'release_year' => 'nullable|integer',
             'type' => 'sometimes|required|string|in:Movie,Series|max:10',
@@ -54,6 +89,11 @@ class MovieController extends Controller
             'rating' => 'nullable|numeric|min:0|max:5',
             'is_published' => 'boolean',
         ]);
+
+        $posterFileUrl = $this->storePoster($request);
+        if ($posterFileUrl) {
+            $data['poster_url'] = $posterFileUrl;
+        }
 
         $movie->update($data);
         return response()->json($movie);

@@ -9,7 +9,20 @@ class MovieCastController extends Controller
 {
     public function index()
     {
-        return response()->json(MovieCast::paginate(50));
+        $casts = MovieCast::with(['movie', 'actor'])->paginate(50);
+
+        // transform the collection inside the paginator so pagination meta remains
+        $casts->getCollection()->transform(function ($c) {
+            return [
+                'movie_id'   => $c->movie_id,
+                'movie_name' => $c->movie->title ?? null,   // adjust field if your movie title column differs
+                'actor_id'   => $c->actor_id,
+                'actor_name' => $c->actor->name ?? null,    // adjust field if your actor name column differs
+                'role_name'  => $c->role_name,
+            ];
+        });
+
+        return response()->json($casts);
     }
 
     public function store(Request $request)
@@ -45,5 +58,3 @@ class MovieCastController extends Controller
         return response()->json(['message' => 'Deleted']);
     }
 }
-
-
