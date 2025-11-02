@@ -7,9 +7,24 @@ use Illuminate\Http\Request;
 
 class GenreController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return response()->json(Genre::all());
+        $search = $request->get('search', '');
+        
+        $query = Genre::query();
+
+        // Search filter
+        if (!empty($search)) {
+            $query->where(function($q) use ($search) {
+                $q->where('name', 'LIKE', "%{$search}%")
+                  ->orWhere('description', 'LIKE', "%{$search}%");
+            });
+        }
+
+        // Order by id since timestamps are disabled, and include movies count
+        $genres = $query->withCount('movies')->orderBy('id', 'desc')->get();
+        
+        return response()->json($genres);
     }
 
     public function store(Request $request)
@@ -24,6 +39,7 @@ class GenreController extends Controller
 
     public function show(Genre $genre)
     {
+        $genre->loadCount('movies');
         return response()->json($genre);
     }
 

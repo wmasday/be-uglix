@@ -13,6 +13,7 @@ class Actor extends Model
         'bio',
         'birth_date',
         'photo_url',
+        'nationality',
     ];
 
     public function movies()

@@ -6,17 +6,37 @@ use App\Models\Genre;
 use App\Models\Movie;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Laravel\Sanctum\PersonalAccessToken;
 
 class DropdownController extends Controller
 {
     /**
      * Get all unique years from movies for dropdown
      */
-    public function getYears(): JsonResponse
+    public function getYears(Request $request): JsonResponse
     {
-        $years = Movie::select('release_year')
-            ->whereNotNull('release_year')
-            ->distinct()
+        // Check if user is authenticated (even without middleware)
+        $user = null;
+        if ($request->bearerToken()) {
+            try {
+                $token = PersonalAccessToken::findToken($request->bearerToken());
+                if ($token) {
+                    $user = $token->tokenable;
+                }
+            } catch (\Exception $e) {
+                // Token invalid, treat as guest
+            }
+        }
+
+        $query = Movie::select('release_year')
+            ->whereNotNull('release_year');
+
+        // Only show years from published movies for guests
+        if (!$user) {
+            $query->where('is_published', true);
+        }
+
+        $years = $query->distinct()
             ->orderBy('release_year', 'desc')
             ->pluck('release_year')
             ->filter()
@@ -46,12 +66,31 @@ class DropdownController extends Controller
     /**
      * Get all unique countries from movies for dropdown
      */
-    public function getCountries(): JsonResponse
+    public function getCountries(Request $request): JsonResponse
     {
-        $countries = Movie::select('country')
+        // Check if user is authenticated (even without middleware)
+        $user = null;
+        if ($request->bearerToken()) {
+            try {
+                $token = PersonalAccessToken::findToken($request->bearerToken());
+                if ($token) {
+                    $user = $token->tokenable;
+                }
+            } catch (\Exception $e) {
+                // Token invalid, treat as guest
+            }
+        }
+
+        $query = Movie::select('country')
             ->whereNotNull('country')
-            ->where('country', '!=', '')
-            ->distinct()
+            ->where('country', '!=', '');
+
+        // Only show countries from published movies for guests
+        if (!$user) {
+            $query->where('is_published', true);
+        }
+
+        $countries = $query->distinct()
             ->orderBy('country')
             ->pluck('country')
             ->filter()

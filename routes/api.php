@@ -11,6 +11,20 @@ use Illuminate\Support\Facades\Route;
 
 
 
+Route::post('/auth/register', [AuthController::class, 'register']);
+Route::post('/auth/login', [AuthController::class, 'login']);
+
+// Public read-only routes
+Route::get('genres', [GenreController::class, 'index']);
+Route::get('genres/{genre}', [GenreController::class, 'show']);
+
+// Movies route - handles both authenticated and unauthenticated (controller checks auth)
+Route::get('movies', [MovieController::class, 'index']);
+Route::get('movies/new-releases', [MovieController::class, 'newReleases']);
+Route::get('movies/top-rated', [MovieController::class, 'topRated']);
+Route::get('movies/search', [MovieController::class, 'search']);
+Route::get('movies/{movie}', [MovieController::class, 'show']);
+
 // Protected write routes
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/auth/me', [AuthController::class, 'me']);
@@ -20,7 +34,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('genres/{genre}', [GenreController::class, 'update']);
     Route::delete('genres/{genre}', [GenreController::class, 'destroy']);
 
-    Route::get('movies', [MovieController::class, 'index']);
     Route::post('movies', [MovieController::class, 'store']);
     Route::put('movies/{movie}', [MovieController::class, 'update']);
     Route::delete('movies/{movie}', [MovieController::class, 'destroy']);
@@ -38,19 +51,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('movie-casts/{movie_id}/{actor_id}', [MovieCastController::class, 'destroy']);
 });
 
-Route::post('/auth/register', [AuthController::class, 'register']);
-Route::post('/auth/login', [AuthController::class, 'login']);
-
-// Public read-only routes
-Route::get('genres', [GenreController::class, 'index']);
-Route::get('genres/{genre}', [GenreController::class, 'show']);
-
-Route::get('movies', [MovieController::class, 'index']);
-Route::get('movies/new-releases', [MovieController::class, 'newReleases']);
-Route::get('movies/top-rated', [MovieController::class, 'topRated']);
-Route::get('movies/search', [MovieController::class, 'search']);
-Route::get('movies/{movie}', [MovieController::class, 'show']);
-
 Route::get('episodes', [EpisodeController::class, 'index']);
 Route::get('episodes/{episode}', [EpisodeController::class, 'show']);
 
@@ -65,3 +65,7 @@ Route::get('movie-casts/{movie_id}/{actor_id}', [MovieCastController::class, 'sh
 Route::get('dropdown/years', [DropdownController::class, 'getYears']);
 Route::get('dropdown/genres', [DropdownController::class, 'getGenres']);
 Route::get('dropdown/countries', [DropdownController::class, 'getCountries']);
+
+Route::get('/v1', function () {
+    return 'Hello World';
+});

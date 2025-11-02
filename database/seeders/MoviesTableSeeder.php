@@ -9,138 +9,26 @@ class MoviesTableSeeder extends Seeder
 {
     public function run(): void
     {
-        // Ensure at least one user and genre exist (IDs 1)
         DB::table('movies')->insert([
-            [
-                'title' => 'The Dark Knight',
-                'description' => 'A superhero film about Batman facing the Joker',
-                'poster_url' => null,
-                'sources_url' => 'https://example.com/videos/dark_knight.mp4',
-                'release_year' => 2008,
-                'country' => 'USA',
-                'type' => 'Movie',
-                'genre_id' => 1, // Action
-                'duration_sec' => 9120, // 152 minutes
-                'rating' => 4.80,
-                'created_by' => 1,
-                'created_at' => now(),
-                'updated_at' => now(),
-                'is_published' => true,
-            ],
-            [
-                'title' => 'Inception',
-                'description' => 'A mind-bending sci-fi thriller about dreams within dreams',
-                'poster_url' => null,
-                'sources_url' => 'https://example.com/videos/inception_s1e1.mp4',
-                'release_year' => 2010,
-                'country' => 'USA',
-                'type' => 'Series',
-                'genre_id' => 4, // Sci-Fi
-                'duration_sec' => null, // Series don't have fixed duration
-                'rating' => 4.70,
-                'created_by' => 1,
-                'created_at' => now(),
-                'updated_at' => now(),
-                'is_published' => true,
-            ],
-            [
-                'title' => 'Parasite',
-                'description' => 'A South Korean thriller about class struggle',
-                'poster_url' => null,
-                'sources_url' => 'https://example.com/videos/parasite.mp4',
-                'release_year' => 2019,
-                'country' => 'South Korea',
-                'type' => 'Movie',
-                'genre_id' => 3, // Drama
-                'duration_sec' => 7920, // 132 minutes
-                'rating' => 4.90,
-                'created_by' => 1,
-                'created_at' => now(),
-                'updated_at' => now(),
-                'is_published' => true,
-            ],
-            [
-                'title' => 'The Office',
-                'description' => 'A mockumentary sitcom about office life',
-                'poster_url' => null,
-                'sources_url' => 'https://example.com/videos/office_s1e1.mp4',
-                'release_year' => 2005,
-                'country' => 'USA',
-                'type' => 'Series',
-                'genre_id' => 2, // Comedy
-                'duration_sec' => null,
-                'rating' => 4.60,
-                'created_by' => 1,
-                'created_at' => now(),
-                'updated_at' => now(),
-                'is_published' => true,
-            ],
-            [
-                'title' => 'Stranger Things',
-                'description' => 'A supernatural horror series set in the 1980s',
-                'poster_url' => null,
-                'sources_url' => 'https://example.com/videos/stranger_things_s1e1.mp4',
-                'release_year' => 2016,
-                'country' => 'USA',
-                'type' => 'Series',
-                'genre_id' => 4, // Sci-Fi
-                'duration_sec' => null,
-                'rating' => 4.50,
-                'created_by' => 1,
-                'created_at' => now(),
-                'updated_at' => now(),
-                'is_published' => true,
-            ],
-            [
-                'title' => 'Amélie',
-                'description' => 'A French romantic comedy about a shy waitress',
-                'poster_url' => null,
-                'sources_url' => 'https://example.com/videos/amelie.mp4',
-                'release_year' => 2001,
-                'country' => 'France',
-                'type' => 'Movie',
-                'genre_id' => 2, // Comedy
-                'duration_sec' => 7320, // 122 minutes
-                'rating' => 4.40,
-                'created_by' => 1,
-                'created_at' => now(),
-                'updated_at' => now(),
-                'is_published' => true,
-            ],
-            [
-                'title' => 'The Crown',
-                'description' => 'A historical drama about the British Royal Family',
-                'poster_url' => null,
-                'sources_url' => 'https://example.com/videos/crown_s1e1.mp4',
-                'release_year' => 2016,
-                'country' => 'UK',
-                'type' => 'Series',
-                'genre_id' => 3, // Drama
-                'duration_sec' => null,
-                'rating' => 4.30,
-                'created_by' => 1,
-                'created_at' => now(),
-                'updated_at' => now(),
-                'is_published' => true,
-            ],
-            [
-                'title' => 'Dune',
-                'description' => 'An epic sci-fi film based on Frank Herbert\'s novel',
-                'poster_url' => null,
-                'sources_url' => 'https://example.com/videos/dune.mp4',
-                'release_year' => 2021,
-                'country' => 'USA',
-                'type' => 'Movie',
-                'genre_id' => 4, // Sci-Fi
-                'duration_sec' => 9300, // 155 minutes
-                'rating' => 4.20,
-                'created_by' => 1,
-                'created_at' => now(),
-                'updated_at' => now(),
-                'is_published' => true,
-            ],
+        // --- Movies ---
+            ['title'=>'Avengers: Endgame','description'=>'Final battle against Thanos','poster_url'=>'https://image.tmdb.org/t/p/w500/ulzhLuWrPK07P1YkdWQLZnQh1JL.jpg','sources_url'=>"https://file-examples.com/storage/fe9b91af07690723a998171/2017/04/file_example_MP4_480_1_5MG.mp4",'release_year'=>2019,'country'=>'USA','type'=>'Movie','genre_id'=>1,'duration_sec'=>10800,'rating'=>4.9,'created_by'=>1,'is_published'=>1,'created_at'=>now(),'updated_at'=>now()],
+            ['title'=>'Inception','description'=>'Dream heist thriller','poster_url'=>'https://image.tmdb.org/t/p/w500/edv5CZvWj09upOsy2Y6IwDhK8bt.jpg','sources_url'=>"https://file-examples.com/storage/fe9b91af07690723a998171/2017/04/file_example_MP4_480_1_5MG.mp4",'release_year'=>2010,'country'=>'USA','type'=>'Movie','genre_id'=>4,'duration_sec'=>8880,'rating'=>4.8,'created_by'=>1,'is_published'=>1,'created_at'=>now(),'updated_at'=>now()],
+            ['title'=>'John Wick','description'=>'Legendary assassin avenges dog','poster_url'=>'https://image.tmdb.org/t/p/w500/fZPSd91yGE9fCcCe6OoQr6E3Bev.jpg','sources_url'=>"https://file-examples.com/storage/fe9b91af07690723a998171/2017/04/file_example_MP4_480_1_5MG.mp4",'release_year'=>2014,'country'=>'USA','type'=>'Movie','genre_id'=>1,'duration_sec'=>6060,'rating'=>4.7,'created_by'=>1,'is_published'=>1,'created_at'=>now(),'updated_at'=>now()],
+            ['title'=>'Interstellar','description'=>'Humanity searches for a new home','poster_url'=>'https://image.tmdb.org/t/p/w500/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg','sources_url'=>"https://file-examples.com/storage/fe9b91af07690723a998171/2017/04/file_example_MP4_480_1_5MG.mp4",'release_year'=>2014,'country'=>'USA','type'=>'Movie','genre_id'=>4,'duration_sec'=>10140,'rating'=>4.9,'created_by'=>1,'is_published'=>1,'created_at'=>now(),'updated_at'=>now()],
+            ['title'=>'Mission Impossible Fallout','description'=>'Ethan Hunt saves the world','poster_url'=>'https://image.tmdb.org/t/p/w500/AkJQpZp9WoNdj7pLYSj1L0RcMMN.jpg','sources_url'=>"https://file-examples.com/storage/fe9b91af07690723a998171/2017/04/file_example_MP4_480_1_5MG.mp4",'release_year'=>2018,'country'=>'USA','type'=>'Movie','genre_id'=>1,'duration_sec'=>8940,'rating'=>4.6,'created_by'=>1,'is_published'=>1,'created_at'=>now(),'updated_at'=>now()],
+            ['title'=>'Parasite','description'=>'Korean social thriller','poster_url'=>'https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg','sources_url'=>"https://file-examples.com/storage/fe9b91af07690723a998171/2017/04/file_example_MP4_480_1_5MG.mp4",'release_year'=>2019,'country'=>'South Korea','type'=>'Movie','genre_id'=>3,'duration_sec'=>7920,'rating'=>4.9,'created_by'=>1,'is_published'=>1,'created_at'=>now(),'updated_at'=>now()],
+            ['title'=>'Dune','description'=>'Epic sci-fi war on Arrakis','poster_url'=>'https://image.tmdb.org/t/p/w500/d5NXSklXo0qyIYkgV94XAgMIckC.jpg','sources_url'=>"https://file-examples.com/storage/fe9b91af07690723a998171/2017/04/file_example_MP4_480_1_5MG.mp4",'release_year'=>2021,'country'=>'USA','type'=>'Movie','genre_id'=>4,'duration_sec'=>9300,'rating'=>4.5,'created_by'=>1,'is_published'=>1,'created_at'=>now(),'updated_at'=>now()],
+            ['title'=>'Joker','description'=>'Origin of Joker','poster_url'=>'https://image.tmdb.org/t/p/w500/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg','sources_url'=>"https://file-examples.com/storage/fe9b91af07690723a998171/2017/04/file_example_MP4_480_1_5MG.mp4",'release_year'=>2019,'country'=>'USA','type'=>'Movie','genre_id'=>3,'duration_sec'=>7240,'rating'=>4.7,'created_by'=>1,'is_published'=>1,'created_at'=>now(),'updated_at'=>now()],
+            ['title'=>'La La Land','description'=>'Musical romance in LA','poster_url'=>'https://image.tmdb.org/t/p/w500/7uJzKqmau8Vg5N5lqB2cHzD3h67.jpg','sources_url'=>"https://file-examples.com/storage/fe9b91af07690723a998171/2017/04/file_example_MP4_480_1_5MG.mp4",'release_year'=>2016,'country'=>'USA','type'=>'Movie','genre_id'=>6,'duration_sec'=>7680,'rating'=>4.4,'created_by'=>1,'is_published'=>1,'created_at'=>now(),'updated_at'=>now()],
+            ['title'=>'Train to Busan','description'=>'Zombie outbreak in Korea','poster_url'=>'https://image.tmdb.org/t/p/w500/2N4O2c0Pp30C4P0tZLxSkVf5iNE.jpg','sources_url'=>"https://file-examples.com/storage/fe9b91af07690723a998171/2017/04/file_example_MP4_480_1_5MG.mp4",'release_year'=>2016,'country'=>'South Korea','type'=>'Movie','genre_id'=>1,'duration_sec'=>7080,'rating'=>4.3,'created_by'=>1,'is_published'=>1,'created_at'=>now(),'updated_at'=>now()],
+
+            // --- Series ---
+            ['title'=>'Stranger Things','description'=>'Kids vs supernatural','poster_url'=>'https://image.tmdb.org/t/p/w500/x2LSRK2Cm7MZhjluni1msVJ3wDF.jpg','sources_url'=>"https://file-examples.com/storage/fe9b91af07690723a998171/2017/04/file_example_MP4_480_1_5MG.mp4",'release_year'=>2016,'country'=>'USA','type'=>'Series','genre_id'=>4,'duration_sec'=>null,'rating'=>4.8,'created_by'=>1,'is_published'=>1,'created_at'=>now(),'updated_at'=>now()],
+            ['title'=>'The Witcher','description'=>'Monster hunter saga','poster_url'=>'https://image.tmdb.org/t/p/w500/zrPpUlehQaBf8YX2NrVrKK8IEpf.jpg','sources_url'=>"https://file-examples.com/storage/fe9b91af07690723a998171/2017/04/file_example_MP4_480_1_5MG.mp4",'release_year'=>2019,'country'=>'USA','type'=>'Series','genre_id'=>5,'duration_sec'=>null,'rating'=>4.6,'created_by'=>1,'is_published'=>1,'created_at'=>now(),'updated_at'=>now()],
+            ['title'=>'Vincenzo','description'=>'Mafia consigliere returns to Korea','poster_url'=>'https://image.tmdb.org/t/p/w500/8QTBs0MEAm9fG2tK2vCuxnxOQme.jpg','sources_url'=>"https://file-examples.com/storage/fe9b91af07690723a998171/2017/04/file_example_MP4_480_1_5MG.mp4",'release_year'=>2021,'country'=>'South Korea','type'=>'Series','genre_id'=>3,'duration_sec'=>null,'rating'=>4.8,'created_by'=>1,'is_published'=>1,'created_at'=>now(),'updated_at'=>now()],
+            ['title'=>'Crash Landing on You','description'=>'Woman lands in North Korea','poster_url'=>'https://image.tmdb.org/t/p/w500/8r2YrV7qjFv39RLaUH2kzJfO6P5.jpg','sources_url'=>"https://file-examples.com/storage/fe9b91af07690723a998171/2017/04/file_example_MP4_480_1_5MG.mp4",'release_year'=>2020,'country'=>'South Korea','type'=>'Series','genre_id'=>6,'duration_sec'=>null,'rating'=>4.9,'created_by'=>1,'is_published'=>1,'created_at'=>now(),'updated_at'=>now()],
+            ['title'=>'Goblin','description'=>'Immortal goblin seeks bride','poster_url'=>'https://image.tmdb.org/t/p/w500/eazQwMCE3yKvZrgbE6BIPQRQ4tF.jpg','sources_url'=>"https://file-examples.com/storage/fe9b91af07690723a998171/2017/04/file_example_MP4_480_1_5MG.mp4",'release_year'=>2016,'country'=>'South Korea','type'=>'Series','genre_id'=>5,'duration_sec'=>null,'rating'=>4.9,'created_by'=>1,'is_published'=>1,'created_at'=>now(),'updated_at'=>now()],
         ]);
+
     }
 }
-
-
