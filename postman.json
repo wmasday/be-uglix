@@ -325,6 +325,66 @@
                         }
                     },
                     "response": []
+                },
+                {
+                    "name": "New Releases",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{base_url}}/api/movies/new-releases",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "movies",
+                                "new-releases"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Top Rated",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{base_url}}/api/movies/top-rated",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "movies",
+                                "top-rated"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Search Movies",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{base_url}}/api/movies/search?query=test",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "movies",
+                                "search"
+                            ],
+                            "query": [
+                                {
+                                    "key": "query",
+                                    "value": "test"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
                 }
             ]
         },
@@ -551,6 +611,25 @@
                         }
                     },
                     "response": []
+                },
+                {
+                    "name": "Get Actor Movies",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{base_url}}/api/actors/1/movies",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "actors",
+                                "1",
+                                "movies"
+                            ]
+                        }
+                    },
+                    "response": []
                 }
             ]
         },
@@ -663,6 +742,65 @@
                                 "movie-casts",
                                 "1",
                                 "1"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Dropdown",
+            "item": [
+                {
+                    "name": "Get Years",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{base_url}}/api/dropdown/years",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "dropdown",
+                                "years"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Genres",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{base_url}}/api/dropdown/genres",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "dropdown",
+                                "genres"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Countries",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{base_url}}/api/dropdown/countries",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "dropdown",
+                                "countries"
                             ]
                         }
                     },
